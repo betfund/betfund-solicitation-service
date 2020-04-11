@@ -27,7 +27,7 @@ def run(distributed, scheduled):
 
 @cli.command()
 @common_options
-def register():
+def register(distributed, scheduled):
     service = SolicitationService(distributed=distributed, scheduled=scheduled)
     service.flow.register()
 

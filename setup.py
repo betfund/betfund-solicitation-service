@@ -5,9 +5,6 @@ from io import open
 
 
 __version__ = "0.0.1"
-__author__ = "Mitchell Bregman"
-__email__ = "mitchbregs@gmail.com"
-
 
 with open('README.md') as f:
     long_description = f.read()
@@ -20,8 +17,8 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/betfund/betfund-solicitation-service',
-    author=__author__,
-    author_email=__email__,
+    author="Mitchell Bregman, Leon Kozlowski",
+    author_email="mitchbregs@gmail.com, leonkozlowski@gmail.com",
     python_requires='>=3.7',
     packages=find_packages(),
     install_requires=[

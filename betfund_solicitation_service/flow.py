@@ -17,11 +17,10 @@ from betfund_solicitation_service.tasks import (
 
 class SolicitationService:
 
-    def __init__(self, name="solicitation-flow", distributed=False, scheduled=False):
+    def __init__(self, distributed=False, scheduled=False):
         """Initialize the `SolicitationService` object."""
 
         # flow meta
-        self.name = name
         self.distributed = distributed
         self.scheduled = scheduled
 
@@ -41,7 +40,7 @@ class SolicitationService:
         cleanup_task = CleanUp()
         send_task = SendSolicitation()
 
-        with Flow(self.name) as flow:
+        with Flow("betfund-solicitation-flow") as flow:
             strategies = strategies_task()
             evaluated = evaluated_task.map(strategies)
             fund_users = fund_users_task.map(evaluated)
