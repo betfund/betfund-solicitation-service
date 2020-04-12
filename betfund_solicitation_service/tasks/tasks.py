@@ -18,9 +18,9 @@ load_dotenv()
 class GetStrategies(Task):
     """Subclass `GetStrategies` of `prefect.Task`"""
 
-    def __init__(self, **kwargs):
+    def __init__(self):
         self.connection_string = os.environ.get("DB_CONNECTION_STRING")
-        super().__init__(**kwargs)
+        super().__init__()
 
     def run(self):
         """
@@ -84,9 +84,9 @@ class EvaluateStrategies(Task):
 class GetFundUserEmails(Task):
     """Subclass `GetFundUserEmails` of `prefect.Task`"""
 
-    def __init__(self, **kwargs):
+    def __init__(self):
         self.connection_string = os.environ.get("DB_CONNECTION_STRING")
-        super().__init__(**kwargs)
+        super().__init__()
 
     def run(self, valid_fund):
         """
