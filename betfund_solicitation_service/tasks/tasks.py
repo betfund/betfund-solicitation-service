@@ -6,6 +6,7 @@ from functools import partial
 from itertools import chain, groupby
 from operator import is_not
 
+from betfund_logger import CloudLogger
 from dateutil.parser import parse
 from dotenv import load_dotenv
 from prefect import Task
@@ -13,6 +14,12 @@ from prefect.tasks.secrets import EnvVarSecret
 from sqlalchemy import create_engine
 
 load_dotenv()
+logger = CloudLogger(
+    log_group='betfund-solicitor',
+    log_stream='sendgrid',
+    aws_access_key=os.environ.get('AWS_ACCESS_KEY'),
+    aws_secret_key=os.environ.get('AWS_SECRET_KEY')
+)
 
 
 class GetStrategies(Task):
@@ -143,6 +150,7 @@ class GetFundUserEmails(Task):
 
                 results = [dict(row.items()) for row in rows.fetchall()]
 
+            logger.info('List of users to email: {}'.format(json.dumps(results)))
             return results
 
 
@@ -199,4 +207,5 @@ class SendSolicitation(Task):
                 ),
             )
             sg = SendGrid(msg, self.sendgrid_api_key)
-            sg.send()
+            res = sg.send()
+            logger.info('Sent email: '.format(json.dumps(res)))
