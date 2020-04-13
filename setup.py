@@ -22,6 +22,7 @@ setup(
     python_requires='>=3.7',
     packages=find_packages(),
     install_requires=[
+        "betfund_logger @ git+https://github.com/betfund/betfund-logger.git@0.0.2",
         "click",
         "dask",
         "prefect",
