@@ -16,16 +16,12 @@ from betfund_solicitation_service.tasks import (
 
 
 class SolicitationService:
-
     def __init__(self, distributed=False, scheduled=False):
         """Initialize the `SolicitationService` object."""
 
         # flow meta
         self.distributed = distributed
         self.scheduled = scheduled
-
-        # initialize schedule
-        self.schedule = Schedule(clocks=[IntervalClock(interval=timedelta(minutes=1))])
 
     @property
     def flow(self):
@@ -48,7 +44,9 @@ class SolicitationService:
             send = send_task.map(cleanup)
 
         if self.scheduled:
-            flow.schedule = self.schedule
+            flow.schedule = Schedule(
+                clocks=[IntervalClock(interval=timedelta(minutes=1))]
+            )
 
         return flow
 
