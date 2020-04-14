@@ -16,10 +16,25 @@ from betfund_solicitation_service.tasks import (
 
 
 class SolicitationService:
-    def __init__(self, distributed=False, scheduled=False):
-        """Initialize the `SolicitationService` object."""
+    """Solicitation service object encapsulating Prefect workflow.
 
-        # flow meta
+    Attributes
+    ----------
+    distributed : bool
+        Whether or not to run in a Dask distributed environment.
+    scheduled : bool
+        Whether or not to run on a 1-minute interval schedule.
+    """
+    def __init__(self, distributed=False, scheduled=False):
+        """Initialize the `SolicitationService` object.
+
+        Parameters
+        ----------
+        distributed : bool
+            Whether or not to run in a Dask distributed environment.
+        scheduled : bool
+            Whether or not to run on a 1-minute interval schedule.
+        """
         self.distributed = distributed
         self.scheduled = scheduled
 
