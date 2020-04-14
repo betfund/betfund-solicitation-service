@@ -7,10 +7,11 @@ from itertools import chain, groupby
 from operator import is_not
 
 from betfund_logger import CloudLogger
+from betfund_solicitor import Message
+from betfund_solicitor.sendgrid import SendGrid
 from dateutil.parser import parse
 from dotenv import load_dotenv
 from prefect import Task
-from prefect.tasks.secrets import EnvVarSecret
 from sqlalchemy import create_engine
 
 load_dotenv()
@@ -208,4 +209,4 @@ class SendSolicitation(Task):
             )
             sg = SendGrid(msg, self.sendgrid_api_key)
             res = sg.send()
-            logger.info("Sent email: ".format(json.dumps(res)))
+            logger.info("Sent email: {}".format(json.dumps(res)))

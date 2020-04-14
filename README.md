@@ -10,6 +10,8 @@ Prefect workflow to handle solicitation.
 ```bash
 $ export DB_CONNECTION_STRING={betfund-db-connection-string}
 $ export SENDGRID_API_KEY={sendgrid-api-key}
+$ export AWS_ACCESS_KEY={aws-access-key}  # not needed if `aws configure`
+$ export AWS_SECRET_KEY={aws-secret-key}  # not needed if `aws configure`
 ```
 
 #### Help
@@ -23,10 +25,14 @@ $ betfund-solicitation-service register --help
 
 #### Run
 
+Arguments:
+- `--scheduled`: Will use a scheduling manager provided by Prefect.
+- `--distributed`: Will use a Dask distributed computing environment.
+
 Runs the solicitation service flow.
 
 ```bash
-$ betfund-solicitation-service run --scheduled
+$ betfund-solicitation-service run
 ```
 
 #### Register
@@ -34,5 +40,5 @@ $ betfund-solicitation-service run --scheduled
 Registers the solicitation service flow to Prefect Cloud.
 
 ```bash
-$ betfund-solicitation-service register --distributed
+$ betfund-solicitation-service register
 ```
