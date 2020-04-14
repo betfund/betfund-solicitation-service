@@ -1,6 +1,5 @@
 from .tasks import (
     CleanUp,
-    EnvVarSecret,
     EvaluateStrategies,
     GetFundUserEmails,
     GetStrategies,
@@ -9,7 +8,6 @@ from .tasks import (
 
 __all__ = [
     "CleanUp",
-    "EnvVarSecret",
     "EvaluateStrategies",
     "GetFundUserEmails",
     "GetStrategies",

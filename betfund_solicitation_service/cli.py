@@ -22,14 +22,14 @@ def common_options(f):
 @common_options
 def run(distributed, scheduled):
     service = SolicitationService(distributed=distributed, scheduled=scheduled)
-    service.flow.run()
+    service.run()
 
 
 @cli.command()
 @common_options
 def register(distributed, scheduled):
     service = SolicitationService(distributed=distributed, scheduled=scheduled)
-    service.flow.register()
+    service.register()
 
 
 if __name__ == "__main__":
