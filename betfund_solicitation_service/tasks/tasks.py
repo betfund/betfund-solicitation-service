@@ -15,10 +15,10 @@ from sqlalchemy import create_engine
 
 load_dotenv()
 logger = CloudLogger(
-    log_group='betfund-solicitor',
-    log_stream='sendgrid',
-    aws_access_key=os.environ.get('AWS_ACCESS_KEY'),
-    aws_secret_key=os.environ.get('AWS_SECRET_KEY')
+    log_group="betfund-solicitor",
+    log_stream="sendgrid",
+    aws_access_key=os.environ.get("AWS_ACCESS_KEY"),
+    aws_secret_key=os.environ.get("AWS_SECRET_KEY"),
 )
 
 
@@ -150,7 +150,7 @@ class GetFundUserEmails(Task):
 
                 results = [dict(row.items()) for row in rows.fetchall()]
 
-            logger.info('List of users to email: {}'.format(json.dumps(results)))
+            logger.info("List of users to email: {}".format(json.dumps(results)))
             return results
 
 
@@ -208,4 +208,4 @@ class SendSolicitation(Task):
             )
             sg = SendGrid(msg, self.sendgrid_api_key)
             res = sg.send()
-            logger.info('Sent email: '.format(json.dumps(res)))
+            logger.info("Sent email: ".format(json.dumps(res)))
